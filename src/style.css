@@ -1,1 +1,41 @@
 /* Global CSS (variables, resets, typography) */
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000000;
+    overflow: hidden;
+    /* Center elements horizontally */
+    display: flex;
+    justify-content: center;
+}
+
+/* The Runway */
+.runway {
+    width: 400px;
+    height: 2px;
+    background-color: #FFFFFF;
+    position: absolute;
+    top: 70%;
+}
+
+/* Plane Positioning Container */
+.plane-container {
+    position: absolute;
+    top: 70%; 
+    left: 50%;
+    transform: translate(-50%, -100%);
+    width: 120px; 
+    z-index: 10;
+}
+
+/* The Plane Asset */
+.plane-svg {
+    width: 100%;
+    height: auto;
+    fill: #FFFFFF;
+    display: block;
+    transform: scaleX(1); 
+}

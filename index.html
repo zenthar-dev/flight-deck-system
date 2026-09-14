@@ -1,1 +1,45 @@
-<!-- Main entry point (shell) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Booking System</title>
+    <link rel="stylesheet" href="./src/style.css">
+    <!-- GSAP CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+    <!-- Foundational Canvas -->
+    <div class="runway"></div>
+    
+    <!-- The Plane -->
+    <div class="plane-container" id="plane">
+      <!-- Precision geometric SVG matching the side-profile airliner silhouette -->
+      <svg class="plane-svg" viewBox="0 0 400 140" xmlns="http://www.w3.org/2000/svg">
+        <!-- Main Fuselage -->
+        <path d="M 40 85 C 40 65, 80 60, 150 60 L 280 60 C 350 60, 380 75, 380 90 C 380 105, 350 110, 280 110 L 80 110 C 50 110, 40 100, 40 85 Z" fill="#FFFFFF" />
+        <!-- Vertical Tail Fin -->
+        <polygon points="50,70 100,70 70,15 30,15" fill="#FFFFFF" />
+        <!-- Horizontal Stabilizer -->
+        <polygon points="45,100 85,100 65,115 35,115" fill="#FFFFFF" />
+        <!-- Main Wing -->
+        <polygon points="180,100 270,100 210,140 140,140" fill="#FFFFFF" />
+        <!-- Engine Pod -->
+        <rect x="200" y="110" width="40" height="18" rx="9" fill="#FFFFFF" />
+        <!-- Cockpit Window Cutout -->
+        <polygon points="330,72 355,80 355,84 330,82" fill="#000000" />
+        <!-- 7 Passenger Windows -->
+        <circle cx="150" cy="85" r="3.5" fill="#000000" />
+        <circle cx="170" cy="85" r="3.5" fill="#000000" />
+        <circle cx="190" cy="85" r="3.5" fill="#000000" />
+        <circle cx="210" cy="85" r="3.5" fill="#000000" />
+        <circle cx="230" cy="85" r="3.5" fill="#000000" />
+        <circle cx="250" cy="85" r="3.5" fill="#000000" />
+        <circle cx="270" cy="85" r="3.5" fill="#000000" />
+      </svg>
+    </div>
+
+    <!-- Entry Script -->
+    <script type="module" src="./src/main.js"></script>
+</body>
+</html>
