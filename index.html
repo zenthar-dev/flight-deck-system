@@ -1,45 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flight Booking System</title>
-    <link rel="stylesheet" href="./src/style.css">
-    <!-- GSAP CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AXIOM | Cinematic Intro</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #000000;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .scene-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .brand-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      font-style: normal;
+      font-size: 5rem;
+      letter-spacing: 0px;
+      opacity: 0;
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      margin: 0;
+      white-space: nowrap;
+    }
+
+    .animation-wrapper {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 400px;
+      height: 200px;
+    }
+
+    .runway-group {
+      position: absolute;
+      bottom: 50px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .runway {
+      width: 400px;
+      height: 4px;
+      background-color: #FFFFFF;
+      position: relative;
+      border-radius: 2px;
+    }
+
+    .arrowhead {
+      position: absolute;
+      right: -12px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-left: 16px solid #FFFFFF;
+      opacity: 0;
+    }
+
+    .plane-container {
+      position: absolute;
+      bottom: 54px;
+      left: 125px; /* Center horizontally relative to 400px width */
+      width: 150px;
+    }
+
+    .plane-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  </style>
 </head>
 <body>
-    <!-- Foundational Canvas -->
-    <div class="runway"></div>
-    
-    <!-- The Plane -->
-    <div class="plane-container" id="plane">
-      <!-- Precision geometric SVG matching the side-profile airliner silhouette -->
-      <svg class="plane-svg" viewBox="0 0 400 140" xmlns="http://www.w3.org/2000/svg">
-        <!-- Main Fuselage -->
-        <path d="M 40 85 C 40 65, 80 60, 150 60 L 280 60 C 350 60, 380 75, 380 90 C 380 105, 350 110, 280 110 L 80 110 C 50 110, 40 100, 40 85 Z" fill="#FFFFFF" />
-        <!-- Vertical Tail Fin -->
-        <polygon points="50,70 100,70 70,15 30,15" fill="#FFFFFF" />
-        <!-- Horizontal Stabilizer -->
-        <polygon points="45,100 85,100 65,115 35,115" fill="#FFFFFF" />
-        <!-- Main Wing -->
-        <polygon points="180,100 270,100 210,140 140,140" fill="#FFFFFF" />
-        <!-- Engine Pod -->
-        <rect x="200" y="110" width="40" height="18" rx="9" fill="#FFFFFF" />
-        <!-- Cockpit Window Cutout -->
-        <polygon points="330,72 355,80 355,84 330,82" fill="#000000" />
-        <!-- 7 Passenger Windows -->
-        <circle cx="150" cy="85" r="3.5" fill="#000000" />
-        <circle cx="170" cy="85" r="3.5" fill="#000000" />
-        <circle cx="190" cy="85" r="3.5" fill="#000000" />
-        <circle cx="210" cy="85" r="3.5" fill="#000000" />
-        <circle cx="230" cy="85" r="3.5" fill="#000000" />
-        <circle cx="250" cy="85" r="3.5" fill="#000000" />
-        <circle cx="270" cy="85" r="3.5" fill="#000000" />
-      </svg>
-    </div>
 
-    <!-- Entry Script -->
-    <script type="module" src="./src/main.js"></script>
+  <div class="scene-container">
+    <h1 class="brand-title" id="axiom-text">AXIOM</h1>
+    
+    <div class="animation-wrapper">
+      <div class="plane-container" id="plane">
+        <svg class="plane-svg" viewBox="0 0 400 140" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 40 85 C 40 65, 80 60, 150 60 L 280 60 C 350 60, 380 75, 380 90 C 380 105, 350 110, 280 110 L 80 110 C 50 110, 40 100, 40 85 Z" fill="#FFFFFF" />
+          <polygon points="50,70 100,70 70,15 30,15" fill="#FFFFFF" />
+          <polygon points="45,100 85,100 65,115 35,115" fill="#FFFFFF" />
+          <polygon points="180,100 270,100 210,140 140,140" fill="#FFFFFF" />
+          <rect x="200" y="110" width="40" height="18" rx="9" fill="#FFFFFF" />
+          <polygon points="330,72 355,80 355,84 330,82" fill="#000000" />
+          <circle cx="150" cy="85" r="3.5" fill="#000000" />
+          <circle cx="170" cy="85" r="3.5" fill="#000000" />
+          <circle cx="190" cy="85" r="3.5" fill="#000000" />
+          <circle cx="210" cy="85" r="3.5" fill="#000000" />
+          <circle cx="230" cy="85" r="3.5" fill="#000000" />
+          <circle cx="250" cy="85" r="3.5" fill="#000000" />
+          <circle cx="270" cy="85" r="3.5" fill="#000000" />
+        </svg>
+      </div>
+      <div class="runway-group">
+        <div class="runway" id="runway">
+          <div class="arrowhead" id="arrowhead"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Initial Setup
+    gsap.set("#plane", { 
+      x: -300, 
+      y: -150, 
+      rotation: 15 
+    });
+
+    const tl = gsap.timeline({ delay: 0.5 });
+
+    // STEP 1: Descent
+    tl.to("#plane", {
+      x: 0,
+      y: 0,
+      rotation: 0,
+      duration: 1.5,
+      ease: "power2.out"
+    })
+    
+    // STEP 2: Fade & Shrink
+    // Plane fades out while the runway line physically animates its width down to 40px.
+    .to("#plane", {
+      opacity: 0,
+      duration: 0.6,
+      ease: "power1.inOut"
+    }, "+=0.4")
+    .to("#runway", {
+      width: "40px",
+      duration: 0.6,
+      ease: "power2.inOut"
+    }, "<")
+    // Right as it finishes shrinking, fade in the arrowhead.
+    .to("#arrowhead", {
+      opacity: 1,
+      duration: 0.2
+    }, "-=0.2")
+
+    // STEP 3: The Text Reveal (Exaggerated)
+    // Fade in text and expand letter-spacing from 0px to 16px over 1.5s.
+    .to("#axiom-text", {
+      opacity: 1,
+      letterSpacing: "16px",
+      duration: 1.5,
+      ease: "power2.out"
+    }, "+=0.1")
+
+    // STEP 4: The Shoot
+    // Animate the arrow element translating across the screen to the right.
+    .to("#runway", {
+      x: '100vw',
+      duration: 0.5,
+      ease: "power2.in"
+    }, "+=0.2")
+
+    // STEP 5: The Blackout
+    // Exactly when the arrow finishes traveling off-screen, fade text instantly to pure black.
+    .set("#axiom-text", {
+      opacity: 0
+    });
+  </script>
 </body>
 </html>
