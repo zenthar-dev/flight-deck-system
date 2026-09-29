@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AXIOM | Cinematic Intro</title>
-  
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;900&display=swap" rel="stylesheet">
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <style>
-    body, html {
+    :root {
+      --axiom-font-weight: 600;
+      --axiom-letter-spacing: -0.02em;
+      --axiom-slant: -6deg;
+      --axiom-font-size: clamp(3.5rem, 8vw, 8rem);
+      --axiom-visual-center-offset: -0.05em; /* Visual centering adjustment for A vs M */
+    }
+    body,
+    html {
       margin: 0;
       padding: 0;
       width: 100%;
@@ -34,20 +43,22 @@
 
     .brand-title {
       font-family: 'Montserrat', sans-serif;
-      font-weight: 900;
+      font-weight: var(--axiom-font-weight);
       text-transform: uppercase;
       color: #FFFFFF;
       font-style: normal;
-      font-size: 5rem;
-      letter-spacing: 0px;
+      font-size: var(--axiom-font-size);
+      letter-spacing: var(--axiom-letter-spacing);
       opacity: 0;
       position: absolute;
       top: 40%;
       left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translate(calc(-50% + var(--axiom-visual-center-offset)), -50%) skewX(var(--axiom-slant));
       margin: 0;
       white-space: nowrap;
     }
+    
+
 
     .animation-wrapper {
       position: absolute;
@@ -92,7 +103,8 @@
     .plane-container {
       position: absolute;
       bottom: 54px;
-      left: 125px; /* Center horizontally relative to 400px width */
+      left: 125px;
+      /* Center horizontally relative to 400px width */
       width: 150px;
     }
 
@@ -103,15 +115,34 @@
     }
   </style>
 </head>
+
 <body>
 
   <div class="scene-container">
-    <h1 class="brand-title" id="axiom-text">AXIOM</h1>
-    
+    <h1 class="brand-title" id="axiom-text">
+      <svg class="axiom-svg" viewBox="0 0 390 100" preserveAspectRatio="xMidYMid meet" style="height: 1em; width: 3.9em; display: block; fill: currentColor;">
+        <g id="axiom-A"><path d="M 42,15 L 10,85 L 28,85 L 37,65 L 63,65 L 72,85 L 90,85 L 58,15 Z M 50,30 L 41,51 L 59,51 Z"/></g>
+        <g id="axiom-X">
+          <polygon points="95,15 113,15 165,85 147,85"/>
+          <polygon points="165,15 147,15 137,28 155,28"/>
+          <polygon points="105,72 123,72 113,85 95,85"/>
+        </g>
+        <g id="axiom-I"><rect x="180" y="15" width="16" height="70"/></g>
+        <g id="axiom-O"><path d="M 250,15 C 273,15 288,30 288,50 C 288,70 273,85 250,85 C 227,85 212,70 212,50 C 212,30 227,15 250,15 Z M 250,31 C 235,31 228,41 228,50 C 228,59 235,69 250,69 C 265,69 272,59 272,50 C 272,41 265,31 250,31 Z"/></g>
+        <g id="axiom-M">
+          <polygon points="300,15 318,15 318,85 300,85"/>
+          <polygon points="362,15 380,15 380,75 362,85"/>
+          <polygon points="310,15 328,15 340,55 352,15 370,15 340,75"/>
+        </g>
+      </svg>
+    </h1>
+
     <div class="animation-wrapper">
       <div class="plane-container" id="plane">
         <svg class="plane-svg" viewBox="0 0 400 140" xmlns="http://www.w3.org/2000/svg">
-          <path d="M 40 85 C 40 65, 80 60, 150 60 L 280 60 C 350 60, 380 75, 380 90 C 380 105, 350 110, 280 110 L 80 110 C 50 110, 40 100, 40 85 Z" fill="#FFFFFF" />
+          <path
+            d="M 40 85 C 40 65, 80 60, 150 60 L 280 60 C 350 60, 380 75, 380 90 C 380 105, 350 110, 280 110 L 80 110 C 50 110, 40 100, 40 85 Z"
+            fill="#FFFFFF" />
           <polygon points="50,70 100,70 70,15 30,15" fill="#FFFFFF" />
           <polygon points="45,100 85,100 65,115 35,115" fill="#FFFFFF" />
           <polygon points="180,100 270,100 210,140 140,140" fill="#FFFFFF" />
@@ -135,64 +166,121 @@
   </div>
 
   <script>
-    // Initial Setup
-    gsap.set("#plane", { 
-      x: -300, 
-      y: -150, 
-      rotation: 15 
-    });
+    // STAGE 3: MOTION INTEGRATION
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    const tl = gsap.timeline({ delay: 0.5 });
+    // Easing equivalents for GSAP without CustomEase plugin
+    const easePrimary = "power3.out"; // approx cubic-bezier(0.22, 1, 0.36, 1)
+    const easeSecondary = "power2.inOut"; // approx cubic-bezier(0.4, 0, 0.2, 1)
+    const easeExit = "power2.in"; // approx cubic-bezier(0.4, 0, 1, 1)
 
-    // STEP 1: Descent
-    tl.to("#plane", {
-      x: 0,
-      y: 0,
-      rotation: 0,
-      duration: 1.5,
-      ease: "power2.out"
-    })
-    
-    // STEP 2: Fade & Shrink
-    // Plane fades out while the runway line physically animates its width down to 40px.
-    .to("#plane", {
-      opacity: 0,
-      duration: 0.6,
-      ease: "power1.inOut"
-    }, "+=0.4")
-    .to("#runway", {
-      width: "40px",
-      duration: 0.6,
-      ease: "power2.inOut"
-    }, "<")
-    // Right as it finishes shrinking, fade in the arrowhead.
-    .to("#arrowhead", {
-      opacity: 1,
-      duration: 0.2
-    }, "-=0.2")
+    const tl = gsap.timeline({ delay: 0.2 });
 
-    // STEP 3: The Text Reveal (Exaggerated)
-    // Fade in text and expand letter-spacing from 0px to 16px over 1.5s.
-    .to("#axiom-text", {
-      opacity: 1,
-      letterSpacing: "16px",
-      duration: 1.5,
-      ease: "power2.out"
-    }, "+=0.1")
+    if (prefersReducedMotion) {
+      // REDUCED MOTION: Skip airplane and trajectory. Reveal AXIOM and Arrow immediately.
+      gsap.set("#plane, #runway", { display: "none" });
+      gsap.set("#arrowhead", { opacity: 1 });
+      gsap.set("#axiom-text", { opacity: 1 }); // Ensure container is visible
+      
+      tl.fromTo(".axiom-svg", {
+        opacity: 0,
+        y: 8
+      }, {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        ease: easeSecondary
+      });
+      
+    } else {
+      // FULL CINEMATIC ANIMATION
+      
+      // PHASE 01: INITIAL STATE (0.00s - 0.20s)
+      // Airplane starts near the edge of the screen, runway is scaled to 0
+      gsap.set("#plane", { x: "-40vw", y: -60, rotation: 8, scale: 1 });
+      gsap.set("#runway", { scaleX: 0, transformOrigin: "left center" });
+      gsap.set("#arrowhead", { opacity: 0 });
+      gsap.set("#axiom-text", { opacity: 1 }); // Container visible, children hidden
+      gsap.set(".axiom-svg", { opacity: 0, y: 12, scale: 0.98 });
+      gsap.set(["#axiom-A", "#axiom-X", "#axiom-I", "#axiom-O", "#axiom-M"], { opacity: 0 });
 
-    // STEP 4: The Shoot
-    // Animate the arrow element translating across the screen to the right.
-    .to("#runway", {
-      x: '100vw',
-      duration: 0.5,
-      ease: "power2.in"
-    }, "+=0.2")
+      // PHASE 02: AIRPLANE ENTRY (0.20s - 0.85s)
+      tl.to("#plane", {
+        x: 0,
+        y: 0,
+        rotation: 0,
+        duration: 0.65,
+        ease: easePrimary
+      }, 0.0);
 
-    // STEP 5: The Blackout
-    // Exactly when the arrow finishes traveling off-screen, fade text instantly to pure black.
-    .set("#axiom-text", {
-      opacity: 0
-    });
+      // PHASE 03: TRAJECTORY CREATION (0.35s - 1.15s)
+      // Line is progressively drawn
+      tl.to("#runway", {
+        scaleX: 1,
+        duration: 0.8,
+        ease: easePrimary
+      }, 0.15);
+
+      // PHASE 04: AIRPLANE ARRIVAL / TRANSITION (0.95s - 1.45s)
+      // Airplane transfers attention to the destination
+      tl.to("#plane", {
+        opacity: 0,
+        scale: 0.85,
+        x: "+=40",
+        duration: 0.5,
+        ease: easeSecondary
+      }, 0.75);
+
+      // PHASE 05: AXIOM REVEAL (1.20s - 1.90s)
+      // Container moves up and scales slightly for presence
+      tl.to(".axiom-svg", {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.7,
+        ease: easeSecondary
+      }, 1.0);
+
+      // Coordinated subtle grouped letter reveal
+      tl.to(["#axiom-A", "#axiom-X", "#axiom-I", "#axiom-O", "#axiom-M"], {
+        opacity: 1,
+        duration: 0.4,
+        stagger: 0.03,
+        ease: easePrimary
+      }, 1.05);
+
+      // Trajectory line shrinks into an arrow tail
+      tl.to("#runway", {
+        scaleX: 0.12, 
+        transformOrigin: "right center",
+        duration: 0.5,
+        ease: easeSecondary
+      }, 1.0);
+      
+      tl.to("#arrowhead", {
+        opacity: 1,
+        duration: 0.2
+      }, 1.3);
+
+      // PHASE 06: WORDMARK SETTLE (1.90s - 2.40s)
+      // Timeline naturally holds here.
+
+      // PHASE 07: FORWARD ARROW (2.30s - 2.90s)
+      // Arrow exits to signify forward trajectory
+      tl.to("#runway", {
+        x: '100vw',
+        duration: 0.6,
+        ease: easeExit
+      }, 2.1);
+      
+      // PHASE 08: TRANSITION TO WEBSITE (2.80s - 3.40s)
+      tl.to(".scene-container", {
+        opacity: 0,
+        duration: 0.6,
+        ease: easeSecondary
+      }, 2.6);
+    }
   </script>
 </body>
+
 </html>

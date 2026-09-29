@@ -1,5 +1,6 @@
 /* 1. The Canvas */
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   width: 100vw;
@@ -23,19 +24,21 @@ body, html {
   width: 400px;
   height: 2px;
   background-color: #FFFFFF;
-  top: 50%; /* Centered vertically */
+  top: 50%;
+  /* Centered vertically */
   left: 50%;
   transform: translate(-50%, -50%);
   transform-origin: center center;
   display: flex;
-  justify-content: flex-end; /* Push arrow tip to the right */
+  justify-content: flex-end;
+  /* Push arrow tip to the right */
   align-items: center;
 }
 
 /* Needle tip (hidden initially) */
 .needle-tip {
-  width: 0; 
-  height: 0; 
+  width: 0;
+  height: 0;
   border-top: 6px solid transparent;
   border-bottom: 6px solid transparent;
   border-left: 15px solid #FFFFFF;
@@ -47,7 +50,8 @@ body, html {
 /* 3. The Plane Asset */
 .plane-container {
   position: absolute;
-  top: 50%; /* Centered vertically, aligning with runway */
+  top: 50%;
+  /* Centered vertically, aligning with runway */
   left: 50%;
   width: 120px;
   z-index: 10;
@@ -63,13 +67,15 @@ body, html {
 /* 4. The Brand Typography (AXIOM) */
 h1.brand-title {
   position: absolute;
-  bottom: calc(50% + 15px); /* Positioned exactly above the centered runway */
+  bottom: calc(50% + 15px);
+  /* Positioned exactly above the centered runway */
   left: 50%;
   margin: 0;
   font-family: 'Montserrat', sans-serif;
   font-weight: 900;
   font-style: italic;
-  font-size: 6rem; /* Massive typography as the main content */
+  font-size: 6rem;
+  /* Massive typography as the main content */
   letter-spacing: 20px;
   text-transform: uppercase;
   color: #FFFFFF;

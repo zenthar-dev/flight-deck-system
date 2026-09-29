@@ -1,16 +1,16 @@
 // App entry: manages state and layer transitions
 
 document.addEventListener("DOMContentLoaded", () => {
-  
+
   // We use GSAP to set the initial states so we don't conflict with CSS Transforms
-  
+
   // Hide Brand and shift it down slightly for a slide-up effect
-  gsap.set("#axiom-text", { 
-    xPercent: -50, 
-    y: 30, 
-    opacity: 0 
+  gsap.set("#axiom-text", {
+    xPercent: -50,
+    y: 30,
+    opacity: 0
   });
-  
+
   // Position Plane offscreen to the upper-left
   gsap.set("#plane", {
     xPercent: -50,
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Step 2.4: The Compass Needle Morph
   // The runway line shrinks down into a smaller needle shape
   tl.to("#runway", {
-    width: "140px", 
+    width: "140px",
     duration: 1,
     ease: "power3.inOut"
   }, "<"); // Starts at exactly the same time as the Brand Reveal
