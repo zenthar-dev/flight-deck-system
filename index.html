@@ -6,11 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AXIOM | Cinematic Intro</title>
 
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Montserrat:wght@600;900&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="src/components/navbar.css">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="src/components/navbar.js" defer></script>
   <style>
     :root {
       --axiom-font-weight: 600;
@@ -26,19 +29,42 @@
       width: 100%;
       height: 100%;
       background-color: #000000;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      color: #FFFFFF;
+      font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+      overflow-x: hidden;
+    }
+
+    .brand-axiom {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+    }
+    .mono-code {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .horizon-anchor {
+      height: 1px;
+      background-color: #FFFFFF;
+      width: 100%;
+    }
+    .dot-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 4px);
+      grid-template-rows: repeat(2, 4px);
+      gap: 3px;
     }
 
     .scene-container {
-      position: relative;
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100vw;
       height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
+      background-color: #000000;
+      z-index: 50;
     }
 
     .brand-title {
@@ -68,7 +94,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 400px;
+      width: min(400px, calc(100vw - 60px));
       height: 200px;
     }
 
@@ -82,7 +108,7 @@
     }
 
     .runway {
-      width: 400px;
+      width: 100%;
       height: 4px;
       background-color: #FFFFFF;
       position: relative;
@@ -103,8 +129,9 @@
     .plane-container {
       position: absolute;
       bottom: 54px;
-      left: 125px;
-      /* Center horizontally relative to 400px width */
+      left: 50%;
+      margin-left: -75px;
+      /* Center horizontally relative to parent width */
       width: 150px;
     }
 
@@ -116,7 +143,16 @@
   </style>
 </head>
 
-<body>
+<body class="bg-black text-white min-h-screen flex flex-col justify-start select-none antialiased">
+
+  <!-- Main Website Content (Hidden initially during intro) -->
+  <div id="main-content" style="opacity: 0; display: none;" class="w-full flex-1 flex flex-col">
+    <axiom-navbar></axiom-navbar>
+    
+    <main class="w-full flex-1 max-w-[1720px] mx-auto px-8 pt-16 pb-24 text-center mt-20">
+      <h2 class="text-xl font-semibold text-[#8A8F98] mb-4">Dashboard content goes here. Search above to start planning your trip.</h2>
+    </main>
+  </div>
 
   <div class="scene-container">
     <h1 class="brand-title" id="axiom-text">
@@ -189,7 +225,21 @@
         opacity: 1,
         y: 0,
         duration: 0.7,
-        ease: easeSecondary
+        ease: easeSecondary,
+        onComplete: () => {
+          gsap.to(".scene-container", {
+            opacity: 0,
+            duration: 0.6,
+            delay: 1.0,
+            ease: easeSecondary,
+            onComplete: () => {
+              document.querySelector(".scene-container").style.display = "none";
+              const mainContent = document.getElementById("main-content");
+              mainContent.style.display = "flex";
+              gsap.to(mainContent, { opacity: 1, duration: 0.8, ease: "power2.out" });
+            }
+          });
+        }
       });
       
     } else {
@@ -277,7 +327,13 @@
       tl.to(".scene-container", {
         opacity: 0,
         duration: 0.6,
-        ease: easeSecondary
+        ease: easeSecondary,
+        onComplete: () => {
+          document.querySelector(".scene-container").style.display = "none";
+          const mainContent = document.getElementById("main-content");
+          mainContent.style.display = "flex";
+          gsap.to(mainContent, { opacity: 1, duration: 0.8, ease: "power2.out" });
+        }
       }, 2.6);
     }
   </script>

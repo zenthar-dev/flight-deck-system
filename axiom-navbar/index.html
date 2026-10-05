@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Axiom navbar</title>
+<link rel="stylesheet" href="navbar.css">
+</head>
+<body>
+<header class="nav" id="nav">
+  <a class="brand" href="#" aria-label="Axiom home">
+    <img class="mark" alt="" src="assets/logo-mark.png" width="164" height="160">
+    <img class="word" alt="Axiom" src="assets/logo-wordmark.png" width="263" height="48">
+  </a>
+
+  <label class="cmd">
+    <svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 15.5v-2L13.5 9V3.8c0-.9-.7-1.8-1.5-1.8s-1.5.9-1.5 1.8V9L3 13.5v2l7.5-2.2V18l-2 1.5V21l3.5-1 3.5 1v-1.5l-2-1.5v-4.7z"/></svg>
+    <input id="q" type="text" inputmode="search" enterkeyhint="search" autocomplete="off" aria-label="Where do you want to fly" placeholder="Where to next? Pick your route, dates and seat.">
+    <span class="keys" aria-hidden="true"><kbd id="mod">Ctrl</kbd><kbd>K</kbd></span>
+  </label>
+
+  <div class="right">
+    <button class="icon locate" aria-label="Use my location" title="Use my location">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="M12 1v5M12 18v5M1 12h5M18 12h5"/></svg>
+    </button>
+    <button class="login" id="login">Get Started <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+    <button class="me" id="me" aria-label="Open profile"><span>John Doe</span><i>JD</i></button>
+  </div>
+</header>
+
+<main>Dashboard content goes here. Search above to start planning your trip.</main>
+<script src="navbar.js"></script>
+</body>
+</html>
